@@ -1,0 +1,24 @@
+version: '3.7'
+
+services:
+  fastapi:
+    build: .
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf  # Mount nginx config file
+    ports:
+      - "80:80"  # Expose port 80 for HTTP requests
+    depends_on:
+      - fastapi
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
