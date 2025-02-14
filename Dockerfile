@@ -1,10 +1,12 @@
 FROM python:3.10-slim
 
+# nginx
+RUN apt-get update && apt-get install -y nginx
+
 # working directory
 WORKDIR /app
 
-# nginx
-RUN apt-get update && apt-get install -y nginx
+
 
 # dependencies
 COPY requirements.txt .
