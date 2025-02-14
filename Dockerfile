@@ -22,4 +22,4 @@ COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80 8000
 
 # Start FastAPI with Uvicorn
-CMD nginx -g "daemon off;" && uvicorn main:app --host 0.0.0.0 --port $PORT --workers 1
+CMD  web: nginx -g "daemon off;" & uvicorn main:app --host 0.0.0.0 --port $PORT --workers 1
