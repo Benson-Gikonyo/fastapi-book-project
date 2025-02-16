@@ -1,7 +1,7 @@
 FROM python:3.10-slim
 
 # nginx
-RUN apt-get update && apt-get install -y nginx
+# RUN apt-get update && apt-get install -y nginx
 
 # working directory
 WORKDIR /app
@@ -22,4 +22,5 @@ COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80 8000
 
 # Start FastAPI with Uvicorn
-CMD  web: nginx -g "daemon off;" && uvicorn main:app --host 0.0.0.0 --port $PORT --workers 1
+# CMD  web: nginx -g "daemon off;" && uvicorn main:app --host 0.0.0.0 --port $PORT --workers 1
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
